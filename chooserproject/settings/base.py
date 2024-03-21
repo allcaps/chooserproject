@@ -24,6 +24,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition
 
 INSTALLED_APPS = [
+    "django_extensions",  # `manage.py show_urls` to inspect URL patterns
     "home",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
