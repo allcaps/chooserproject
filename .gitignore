@@ -1,0 +1,60 @@
+# Project files and folders
+/src/{{cookiecutter.module_name}}/settings/local.py
+/src/{{cookiecutter.module_name}}/apps/frontend/static/
+/src/media/
+/src/static/
+/src/tmp/
+*.mo
+*.egg-info
+
+# Project local settings and secrets
+.env
+/secrets/
+
+# Python files
+.Python
+.python-version
+*.pyc
+__pycache__
+pip-selfcheck.json
+
+# Editors
+.vscode
+.idea/
+*.swp
+.helix/
+
+# OS and env files
+.DS_Store
+.template-version
+env
+
+# Testing
+\.pytest_cache/
+
+# Coverage
+.coverage
+coverage.xml
+htmlcov/
+
+# frontend stuff
+node_modules
+webpack-stats.json
+
+# logs
+error.log
+log/
+
+# Docs
+docs/*.pdf
+docs/site/
+/docs/_build/
+
+# Data dumps
+*.psql
+
+# Celery
+src/celerybeat-schedule.*
+
+# SQLite
+db.sqlite3
