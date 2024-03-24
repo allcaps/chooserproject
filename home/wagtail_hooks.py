@@ -116,8 +116,10 @@ def register_shop_link_feature(features):
         draftail_features.EntityFeature(
             {"type": type_, "icon": "snippet", "description": gettext("Shop Link")},
             js=[
-                # I guess we need a script to define `PERSON_CHOOSER_MODAL_ONLOAD_HANDLERS`???
-                # "wagtail_draftail_shop/js/something.js",
+                # chooser-modal.js defines `GENERIC_CHOOSER_MODAL_ONLOAD_HANDLERS`
+                # this contains all JS to load the modal, search, pagination, choose an item, etc.
+                # The JS is provided by Wagtail Generic Chooser third-party package.
+                "home/js/chooser-modal.js",
 
                 # ModalWorkflow.
                 # On chosen, will add the person to the editor.
