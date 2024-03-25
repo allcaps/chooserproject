@@ -1,5 +1,3 @@
-// Not sure about any of this, but used to work with wagtail-generic-choosers...
-
 (() => {
   'use strict';
 
@@ -17,9 +15,6 @@
     return {
       url: global.chooserUrls.personChooser,
       urlParams: {},
-      // TODO: GENERIC_CHOOSER_MODAL_ONLOAD_HANDLERS worked with
-      // wagtail-generic-choosers, but it's not clear how to use it with
-      // Wagtail provided choosers.
       onload: global.GENERIC_CHOOSER_MODAL_ONLOAD_HANDLERS,
     };
   };

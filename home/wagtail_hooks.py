@@ -29,11 +29,11 @@ class PersonLinkHandler(LinkHandler):
 
     An EntityHandler defines how this rewriting is performed.
 
-    Currently Wagtail supports two kinds of entity: links (represented as <a linktype="...">...</a>)
+    Currently, Wagtail supports two kinds of entity: links (represented as <a linktype="...">...</a>)
     and embeds (represented as <embed embedtype="..." />).
 
     The PersonLinkHandler rewrites from:
-        <a linktype="..." pk="1">...</a>
+        <a linktype="person" pk="1">...</a>
     To:
         <a href="/path/to/person">...</a>
     """
@@ -71,7 +71,7 @@ def person_link_entity(props):
     elem = DOM.create_element(
         "a",
         {
-            "linktype": "store",
+            "linktype": "person",
             "id": props.get("id"),
             "data-string": props.get("string"),
             "data-edit-link": props.get("edit_link"),
@@ -104,7 +104,7 @@ ContentstatePersonLinkConversionRule = {
 
 
 @hooks.register("register_rich_text_features")
-def register_shop_link_feature(features):
+def register_person_link_feature(features):
     feature_name = "person"
     type_ = "PERSON"
 
@@ -114,11 +114,12 @@ def register_shop_link_feature(features):
         "draftail",
         feature_name,
         draftail_features.EntityFeature(
-            {"type": type_, "icon": "snippet", "description": gettext("Shop Link")},
+            {"type": type_, "icon": "snippet", "description": gettext("Person Link")},
             js=[
-                # chooser-modal.js defines `GENERIC_CHOOSER_MODAL_ONLOAD_HANDLERS`
-                # this contains all JS to load the modal, search, pagination, choose an item, etc.
-                # The JS is provided by Wagtail Generic Chooser third-party package.
+                # Defines `GENERIC_CHOOSER_MODAL_ONLOAD_HANDLERS`
+                # and contains all functions to load the modal,
+                # search, paginate, and callback when an item is chosen.
+                # The code is borrowed from Wagtail Generic Chooser.
                 "home/js/chooser-modal.js",
 
                 # ModalWorkflow.
@@ -137,8 +138,6 @@ def register_shop_link_feature(features):
 
 @hooks.register("insert_editor_js")
 def editor_js():
-    # Add the chooser URL to the global chooserUrls.
-    # This provides the wagtail-draftail-shop.js with the endpoint to load the modal.
     return format_html(f"""
         <script>
             window.chooserUrls.personChooser = '{reverse('person_chooser:choose')}';

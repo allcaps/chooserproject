@@ -1,11 +1,13 @@
 // From Wagtail Generic Choosers.
+const global = globalThis;
+const $ = global.jQuery;
 
 GENERIC_CHOOSER_MODAL_ONLOAD_HANDLERS = {
     'choose': function(modal, jsonData) {
         var paginationUrl = $('.pagination', modal.body).data('action-url');
 
         function ajaxifyLinks(context) {
-            $('a.item-choice', context).on('click', function() {
+            $('a[data-chooser-modal-choice]', context).on('click', function() {
                 modal.loadUrl(this.href);
                 return false;
             });
